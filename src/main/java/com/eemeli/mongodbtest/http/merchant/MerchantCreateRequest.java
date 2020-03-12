@@ -1,4 +1,4 @@
-package com.eemeli.mongodbtest.http;
+package com.eemeli.mongodbtest.http.merchant;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

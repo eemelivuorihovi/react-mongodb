@@ -1,15 +1,14 @@
 package com.eemeli.mongodbtest.controller;
 
 import com.eemeli.mongodbtest.domain.Merchant;
-import com.eemeli.mongodbtest.http.MerchantCreateRequest;
+import com.eemeli.mongodbtest.http.ApiResponse;
+import com.eemeli.mongodbtest.http.merchant.MerchantCreateRequest;
 import com.eemeli.mongodbtest.service.MerchantService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import javax.validation.Valid;
 import java.util.List;
 import java.util.Optional;
-import java.util.UUID;
 
 @RestController
 @RequestMapping("/api/merchant")
@@ -24,28 +23,50 @@ public class MerchantController {
     @GetMapping()
     public ResponseEntity<?> getMerchants() {
         final List<Merchant> merchants = merchantService.findAll();
-        return ResponseEntity.ok(merchants);
+        return ResponseEntity.ok(
+                ApiResponse.builder()
+                        .success(true)
+                        .data(merchants)
+                        .build()
+        );
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<?> getMerchant(@PathVariable("id") String id) {
+        final Optional<Merchant> merchantOptional = merchantService.findById(id);
+        if (!merchantOptional.isPresent()) {
+            return ResponseEntity.badRequest().body(
+                    ApiResponse.builder()
+                    .success(false)
+                    .message("No merchant found for id: " + id)
+                    .build()
+            );
+        }
+
+        final Merchant merchant = merchantOptional.get();
+        return ResponseEntity.ok(
+                ApiResponse.builder()
+                        .success(true)
+                        .data(merchant)
+                        .build()
+        );
     }
 
     @PostMapping("/create")
     public ResponseEntity<?> createMerchant(@RequestBody MerchantCreateRequest request) {
-        final String uuid = UUID.randomUUID().toString();
-
-        final Optional<Merchant> existingMerchant = merchantService.findById(uuid);
-        if (existingMerchant.isPresent()) {
-            return ResponseEntity.badRequest()
-                    .body("this is probably my fault");
-        }
-
         final Merchant saved =
                 merchantService.save(
                         Merchant.builder()
-                                .id(uuid)
                                 .description(request.getDescription())
                                 .name(request.getName())
                                 .build()
                 );
 
-        return ResponseEntity.ok(saved);
+        return ResponseEntity.ok(
+                ApiResponse.builder()
+                        .success(true)
+                        .data(saved)
+                        .build()
+        );
     }
 }

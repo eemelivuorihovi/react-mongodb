@@ -18,10 +18,6 @@ public class MerchantService {
         this.merchantRepository = merchantRepository;
     }
 
-    public Merchant findMerchantByName(String name) {
-        return merchantRepository.findByName(name);
-    }
-
     public Optional<Merchant> findById(String id) {
         return merchantRepository.findById(id);
     }
