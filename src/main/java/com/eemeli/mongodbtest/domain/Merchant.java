@@ -1,11 +1,15 @@
 package com.eemeli.mongodbtest.domain;
 
+import com.eemeli.mongodbtest.domain.tag.MerchantTag;
 import lombok.Builder;
 import lombok.Data;
+import lombok.Singular;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.FieldType;
 import org.springframework.data.mongodb.core.mapping.MongoId;
+
+import java.util.List;
 
 @Data
 @Builder
@@ -16,4 +20,6 @@ public class Merchant {
     private String id;
     private String name;
     private String description;
+    @Singular
+    private List<MerchantTag> tags;
 }
