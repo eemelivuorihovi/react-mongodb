@@ -1,16 +1,29 @@
 import React from 'react';
 import './App.css';
-import Merchants from "./Merchants";
+import {BrowserRouter as Router, Switch, Route} from "react-router-dom";
+import Navbar from "./components/layout/Navbar";
+import Merchants from "./components/merchant/Merchants";
+import CreateMerchant from "./components/merchant/CreateMerchant";
 
 class App extends React.Component<{}, any> {
     render() {
         return (
-            <div className="App">
-                <div className="App-header">
-                    <h2>Merchants</h2>
-                    <Merchants/>
+            <Router>
+                <div className="App">
+                    <Navbar/>
                 </div>
-            </div>
+
+                <div className="container">
+                    <Switch>
+                        <Route exact path={"/"}>
+                            <Merchants/>
+                        </Route>
+                        <Route path={"/add"}>
+                            <CreateMerchant/>
+                        </Route>
+                    </Switch>
+                </div>
+            </Router>
         );
     }
 }
