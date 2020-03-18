@@ -1,6 +1,5 @@
 package com.eemeli.mongodbtest.domain;
 
-import com.eemeli.mongodbtest.domain.tag.MerchantTag;
 import lombok.Builder;
 import lombok.Data;
 import lombok.Singular;
@@ -21,5 +20,5 @@ public class Merchant {
     private String name;
     private String description;
     @Singular
-    private List<MerchantTag> tags;
+    private List<String> tags;
 }

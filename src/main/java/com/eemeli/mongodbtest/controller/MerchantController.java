@@ -13,6 +13,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
+@CrossOrigin(origins = {"http://localhost:3000"})
 @RequestMapping("/api/merchant")
 public class MerchantController {
 
@@ -40,12 +41,7 @@ public class MerchantController {
     public ResponseEntity<?> getMerchant(@PathVariable("id") String id) {
         final Optional<Merchant> merchantOptional = merchantService.findById(id);
         if (!merchantOptional.isPresent()) {
-            return ResponseEntity.badRequest().body(
-                    ApiResponse.builder()
-                    .success(false)
-                    .message("No merchant found for id: " + id)
-                    .build()
-            );
+            return getBadRequestResponse(id);
         }
 
         final Merchant merchant = merchantOptional.get();
@@ -68,6 +64,32 @@ public class MerchantController {
                 ApiResponse.builder()
                         .success(true)
                         .data(merchant)
+                        .build()
+        );
+    }
+
+    @GetMapping("/{id}/delete")
+    public ResponseEntity<?> delete(@PathVariable("id") String id) {
+        final Optional<Merchant> merchantOptional = merchantService.findById(id);
+        if (!merchantOptional.isPresent()) {
+            return getBadRequestResponse(id);
+        }
+
+        final Merchant merchant = merchantOptional.get();
+        merchantService.delete(merchant);
+
+        return ResponseEntity.ok(
+                ApiResponse.builder()
+                        .success(true)
+                        .build()
+        );
+    }
+
+    private ResponseEntity<?> getBadRequestResponse(String id) {
+        return ResponseEntity.badRequest().body(
+                ApiResponse.builder()
+                        .success(false)
+                        .message("No merchant found for id: " + id)
                         .build()
         );
     }
