@@ -21,7 +21,28 @@ export default class CreateMerchant extends React.Component<{}, any> {
 
     save = (e: any) => {
         e.preventDefault();
-        console.log(this.state);
+
+        let options = {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(this.state)
+        };
+
+        fetch("http://localhost:8080/api/merchant/create", options)
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    window.location.href = "/";
+                }
+                else {
+                    throw new Error(data.message);
+                }
+            })
+            .catch(error => {
+                console.error(error);
+            });
     };
 
     render() {
@@ -38,18 +59,18 @@ export default class CreateMerchant extends React.Component<{}, any> {
                     </div>
                 </div>
                 <div className={"row form-group"}>
-                    <div className={"col-sm-4"}>Name</div>
-                    <div className={"col-sm-8"}>
+                    <div className={"col-sm-3"}>Name</div>
+                    <div className={"col-sm-9"}>
                         <input id={"name"} className={"form-control"} type={"text"}
                             onChange={this.setName}/>
                     </div>
                 </div>
 
                 <div className={"row form-group"}>
-                    <div className={"col-sm-4"}>
-                        Desciption
+                    <div className={"col-sm-3"}>
+                        Description
                     </div>
-                    <div className={"col-sm-8"}>
+                    <div className={"col-sm-9"}>
                         <input id={"desciption"} className={"form-control"} type={"text"}
                             onChange={this.setDescription}/>
                     </div>

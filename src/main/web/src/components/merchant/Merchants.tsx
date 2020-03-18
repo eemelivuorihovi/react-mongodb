@@ -32,7 +32,28 @@ class Merchants extends React.Component<{}, any> {
     }
 
     deleteMerchant(id: string) {
-        console.log("delete: " + id);
+        let url = "http://localhost:8080/api/merchant/" + id + "/delete";
+        fetch(url)
+            .then(response => response.json())
+            .then(r => {
+                if (r.success) {
+                    let merchants =
+                        this.state.merchants
+                            .filter((m: any) => {
+                                return m.id !== id;
+                            });
+
+                    this.setState({
+                        merchants: merchants
+                    });
+                }
+                else {
+                    throw new Error(r.message);
+                }
+            })
+            .catch(error => {
+                console.error(error);
+            })
     }
 
     render() {
