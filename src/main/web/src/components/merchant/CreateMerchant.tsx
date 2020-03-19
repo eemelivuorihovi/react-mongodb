@@ -36,7 +36,7 @@ export default class CreateMerchant extends React.Component<{}, any> {
             body: JSON.stringify(this.state)
         };
 
-        fetch("http://localhost:8080/api/merchant/create", options)
+        fetch("http://localhost:8080/api/merchant/save", options)
             .then(response => response.json())
             .then(data => {
                 if (data.success) {

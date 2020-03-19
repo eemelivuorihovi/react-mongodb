@@ -3,7 +3,7 @@ package com.eemeli.mongodbtest.controller;
 import com.eemeli.mongodbtest.domain.Merchant;
 import com.eemeli.mongodbtest.http.ApiResponse;
 import com.eemeli.mongodbtest.http.converters.ApiConversionService;
-import com.eemeli.mongodbtest.http.merchant.MerchantCreateRequest;
+import com.eemeli.mongodbtest.http.merchant.MerchantSaveRequest;
 import com.eemeli.mongodbtest.service.MerchantService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -53,8 +53,8 @@ public class MerchantController {
         );
     }
 
-    @PostMapping("/create")
-    public ResponseEntity<?> createMerchant(@RequestBody MerchantCreateRequest request) {
+    @PostMapping("/save")
+    public ResponseEntity<?> save(@RequestBody MerchantSaveRequest request) {
         final Merchant merchant =
                 merchantService.save(
                         apiConversionService.convert(request, Merchant.class)

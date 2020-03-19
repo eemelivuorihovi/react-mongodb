@@ -9,10 +9,6 @@ export default class MerchantList extends React.Component<any, any> {
         }
     }
 
-    editMerchant(id: string) {
-        console.log("edit: " + id);
-    }
-
     deleteMerchant(id: string) {
         let url = "http://localhost:8080/api/merchant/" + id + "/delete";
         fetch(url)
@@ -46,14 +42,12 @@ export default class MerchantList extends React.Component<any, any> {
             <div>
                 {merchants.map((merchant: any) =>
                     <div key={merchant.id} className="row">
-                        <div className="col-sm-9 align-middle">
+                        <div className="col-sm-9">
                             <p>{merchant.name}</p>
                         </div>
-                        <div className="col-sm-3 align-middle">
-                            <Link to={"/edit"}>
-                                <button className={"btn btn-edit mr-2 btn-sm"} onClick={() => this.editMerchant(merchant.id)}>
-                                    <i className={"fa fa-pencil fa-lg"}/>
-                                </button>
+                        <div className="col-sm-3">
+                            <Link to={"/edit/" + merchant.id} className={"btn btn-edit mr-2 btn-sm"} title={"Edit " + merchant.name}>
+                                <i className={"fa fa-pencil fa-lg"}/>
                             </Link>
                             <button className={"btn btn-danger btn-sm"} onClick={() => this.deleteMerchant(merchant.id)}>
                                 <i className={"fa fa-trash fa-lg"}/>

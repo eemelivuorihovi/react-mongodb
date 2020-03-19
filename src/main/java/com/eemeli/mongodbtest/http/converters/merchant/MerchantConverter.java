@@ -3,13 +3,13 @@ package com.eemeli.mongodbtest.http.converters.merchant;
 import com.eemeli.mongodbtest.domain.Location;
 import com.eemeli.mongodbtest.domain.Merchant;
 import com.eemeli.mongodbtest.http.geo.PostcodeResponse;
-import com.eemeli.mongodbtest.http.merchant.MerchantCreateRequest;
+import com.eemeli.mongodbtest.http.merchant.MerchantSaveRequest;
 import com.eemeli.mongodbtest.service.geo.PostcodeService;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.stereotype.Component;
 
 @Component
-public class MerchantConverter implements Converter<MerchantCreateRequest, Merchant> {
+public class MerchantConverter implements Converter<MerchantSaveRequest, Merchant> {
 
     private final PostcodeService postcodeService;
 
@@ -18,8 +18,9 @@ public class MerchantConverter implements Converter<MerchantCreateRequest, Merch
     }
 
     @Override
-    public Merchant convert(MerchantCreateRequest request) {
+    public Merchant convert(MerchantSaveRequest request) {
         final Merchant.MerchantBuilder builder = Merchant.builder();
+        builder.id(request.getId());
         builder.name(request.getName());
         builder.description(request.getDescription());
         builder.tags(request.getTags());

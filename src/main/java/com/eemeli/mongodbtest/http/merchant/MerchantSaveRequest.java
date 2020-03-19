@@ -12,7 +12,8 @@ import java.util.List;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class MerchantCreateRequest {
+public class MerchantSaveRequest {
+    private String id;
     private String name;
     private String description;
     private String postcode;
