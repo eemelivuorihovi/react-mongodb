@@ -1,6 +1,7 @@
 import React from "react";
 import LoadingIcon from "../layout/LoadingIcon";
 import MerchantList from "./MerchantList";
+import Map from "./Map";
 
 class Merchants extends React.Component<{}, any> {
 
@@ -37,8 +38,11 @@ class Merchants extends React.Component<{}, any> {
         return (
             <div>
                 <h2>Merchants</h2>
-                <div>
+                <div className={"panel panel-default"}>
                     <MerchantList merchants={merchants}/>
+                </div>
+                <div className={"panel panel-default"}>
+                    <Map merchants={merchants}/>
                 </div>
             </div>
         );
