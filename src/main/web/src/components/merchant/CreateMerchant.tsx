@@ -19,6 +19,12 @@ export default class CreateMerchant extends React.Component<{}, any> {
         });
     };
 
+    setPostcode = (e: any) => {
+        this.setState({
+            postcode: e.target.value
+        });
+    };
+
     save = (e: any) => {
         e.preventDefault();
 
@@ -73,6 +79,16 @@ export default class CreateMerchant extends React.Component<{}, any> {
                     <div className={"col-sm-9"}>
                         <input id={"desciption"} className={"form-control"} type={"text"}
                             onChange={this.setDescription}/>
+                    </div>
+                </div>
+
+                <div className={"row form-group"}>
+                    <div className={"col-sm-3"}>
+                        Postcode
+                    </div>
+                    <div className={"col-sm-9"}>
+                        <input id={"desciption"} className={"form-control"} type={"text"}
+                               onChange={this.setPostcode}/>
                     </div>
                 </div>
             </form>

@@ -1,6 +1,6 @@
 import React from "react";
-import {Link} from "react-router-dom";
 import LoadingIcon from "../layout/LoadingIcon";
+import MerchantList from "./MerchantList";
 
 class Merchants extends React.Component<{}, any> {
 
@@ -27,35 +27,6 @@ class Merchants extends React.Component<{}, any> {
             );
     }
 
-    editMerchant(id: string) {
-        console.log("edit: " + id);
-    }
-
-    deleteMerchant(id: string) {
-        let url = "http://localhost:8080/api/merchant/" + id + "/delete";
-        fetch(url)
-            .then(response => response.json())
-            .then(r => {
-                if (r.success) {
-                    let merchants =
-                        this.state.merchants
-                            .filter((m: any) => {
-                                return m.id !== id;
-                            });
-
-                    this.setState({
-                        merchants: merchants
-                    });
-                }
-                else {
-                    throw new Error(r.message);
-                }
-            })
-            .catch(error => {
-                console.error(error);
-            })
-    }
-
     render() {
         const {merchants, isLoading} = this.state;
 
@@ -66,23 +37,9 @@ class Merchants extends React.Component<{}, any> {
         return (
             <div>
                 <h2>Merchants</h2>
-                {merchants.map((merchant: any) =>
-                    <div key={merchant.id} className="row">
-                        <div className="col-lg-10">
-                            <p>{merchant.name}</p>
-                        </div>
-                        <div className="col-lg-2">
-                            <Link to={"/edit"}>
-                                <button className={"btn btn-info mr-2 btn-sm"} onClick={() => this.editMerchant(merchant.id)}>
-                                    <i className={"fa fa-pencil fa-lg"}/>
-                                </button>
-                            </Link>
-                            <button className={"btn btn-danger btn-sm"} onClick={() => this.deleteMerchant(merchant.id)}>
-                                <i className={"fa fa-trash fa-lg"}/>
-                            </button>
-                        </div>
-                    </div>
-                )}
+                <div>
+                    <MerchantList merchants={merchants}/>
+                </div>
             </div>
         );
     }

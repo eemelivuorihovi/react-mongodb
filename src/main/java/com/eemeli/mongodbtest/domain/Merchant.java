@@ -19,6 +19,7 @@ public class Merchant {
     private String id;
     private String name;
     private String description;
+    private Location location;
     @Singular
     private List<String> tags;
 }

@@ -15,5 +15,6 @@ import java.util.List;
 public class MerchantCreateRequest {
     private String name;
     private String description;
+    private String postcode;
     private List<String> tags = new ArrayList<>();
 }
