@@ -55,12 +55,15 @@ export default class CreateMerchant extends React.Component<{}, any> {
         return (
             <form onSubmit={this.save}>
                 <div className={"row form-group"}>
-                    <div className={"col-sm-11"}>
+                    <div className={"col-sm-10"}>
                         <h2>Add Merchant</h2>
                     </div>
-                    <div className={"col-sm-1"}>
+                    <div className={"col-sm-2"}>
                         <button className={"btn btn-success pull-right"} type={"submit"}>
-                            <i className={"fa fa-floppy-o fa-lg"}/>
+                            <span>
+                                Save&nbsp;
+                                <i className={"fa fa-floppy-o fa-lg"}/>
+                            </span>
                         </button>
                     </div>
                 </div>
