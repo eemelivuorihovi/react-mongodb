@@ -1,6 +1,3 @@
-.App {
-}
-
 .loading-icon {
   text-align: center;
   opacity: 0.6;
@@ -50,4 +47,10 @@ a.nav-link.active:hover {
 .map-marker:hover {
   cursor: pointer;
   opacity: 0.8;
+}
+
+.merchant-list {
+  max-height: 35vh;
+  overflow-y: auto;
+  margin-bottom: 1em;
 }

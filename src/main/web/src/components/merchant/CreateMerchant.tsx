@@ -4,7 +4,9 @@ export default class CreateMerchant extends React.Component<{}, any> {
 
     constructor(props: any) {
         super(props);
-        this.state = {}
+        this.state = {
+            props: props
+        };
     }
 
     setName = (e: any) => {
@@ -38,17 +40,19 @@ export default class CreateMerchant extends React.Component<{}, any> {
 
         fetch("http://localhost:8080/api/merchant/save", options)
             .then(response => response.json())
-            .then(data => {
-                if (data.success) {
-                    window.location.href = "/";
-                }
-                else {
-                    throw new Error(data.message);
-                }
-            })
+            .then(data => this.responseHandler(data))
             .catch(error => {
                 console.error(error);
             });
+    };
+
+    responseHandler = (data: any) => {
+        if (data.success) {
+            this.state.props.history.push("/");
+        }
+        else {
+            throw new Error(data.message);
+        }
     };
 
     render() {

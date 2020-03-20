@@ -8,6 +8,7 @@ export default class EditMerchant extends React.Component<{}, any> {
         this.state ={
             id: params.id,
             merchant: {},
+            props: props,
             isLoading: false
         };
     }
@@ -65,17 +66,19 @@ export default class EditMerchant extends React.Component<{}, any> {
         let url = "http://localhost:8080/api/merchant/save";
         fetch(url, options)
             .then(response => response.json())
-            .then(data => {
-                if (data.success) {
-                    window.location.href = "/";
-                }
-                else {
-                    throw new Error(data.message);
-                }
-            })
+            .then(data => this.responseHandler(data))
             .catch(error => {
                 console.error(error);
             });
+    };
+
+    responseHandler = (data: any) => {
+        if (data.success) {
+            this.state.props.history.push("/");
+        }
+        else {
+            throw new Error(data.message);
+        }
     };
 
     render() {

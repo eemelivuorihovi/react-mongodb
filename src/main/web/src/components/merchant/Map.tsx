@@ -5,8 +5,8 @@ export default function Map(props: any) {
     const [viewport, setViewport] = useState({
         latitude: 53.407154,
         longitude: -2.991665,
-        width: '50vw',
-        height: '50vh',
+        width: '60vw',
+        height: '45vh',
         zoom: 10
     });
 
@@ -17,7 +17,7 @@ export default function Map(props: any) {
             if (e.key === "Escape") {
                 setSelected(null);
             }
-        }
+        };
 
         window.addEventListener("keydown", listener);
     }, []);

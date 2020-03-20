@@ -34,27 +34,32 @@ export default class MerchantList extends React.Component<any, any> {
             })
     }
 
-
     render() {
         const {merchants} = this.state;
 
         return (
-            <div>
-                {merchants.map((merchant: any) =>
-                    <div key={merchant.id} className="row">
-                        <div className="col-sm-9">
-                            <p>{merchant.name}</p>
-                        </div>
-                        <div className="col-sm-3">
-                            <Link to={"/edit/" + merchant.id} className={"btn btn-edit mr-2 btn-sm"} title={"Edit " + merchant.name}>
-                                <i className={"fa fa-pencil fa-lg"}/>
-                            </Link>
-                            <button className={"btn btn-danger btn-sm"} onClick={() => this.deleteMerchant(merchant.id)}>
-                                <i className={"fa fa-trash fa-lg"}/>
-                            </button>
-                        </div>
-                    </div>
-                )}
+            <div className="merchant-list">
+                <ul className="list-group">
+                    {merchants.map((merchant: any) =>
+                        <li key={merchant.id} className="list-group-item">
+                            <div className="row">
+                                <div className="col-sm-9">
+                                    {merchant.name}
+                                </div>
+                                <div className="col-sm-3">
+                                    <div className="btn-group pull-right">
+                                        <Link to={"/edit/" + merchant.id} className={"btn btn-edit mr-2 btn-sm"} title={"Edit " + merchant.name}>
+                                            <i className={"fa fa-pencil fa-lg"}/>
+                                        </Link>
+                                        <button className={"btn btn-danger btn-sm"} onClick={() => this.deleteMerchant(merchant.id)}>
+                                            <i className={"fa fa-trash fa-lg"}/>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                    )}
+                </ul>
             </div>
         );
     }

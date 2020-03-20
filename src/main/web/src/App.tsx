@@ -10,18 +10,12 @@ class App extends React.Component<{}, any> {
     render() {
         return (
             <Router>
-                <div className="App">
-                    <Navbar/>
-                </div>
+                <Navbar/>
 
                 <div className="container">
                     <Switch>
-                        <Route exact path={"/"}>
-                            <Merchants/>
-                        </Route>
-                        <Route path={"/add"}>
-                            <CreateMerchant/>
-                        </Route>
+                        <Route exact path={"/"} component={Merchants}/>
+                        <Route path={"/add"} component={CreateMerchant}/>
                         <Route path={"/edit/:id"} component={EditMerchant}/>
                     </Switch>
                 </div>
