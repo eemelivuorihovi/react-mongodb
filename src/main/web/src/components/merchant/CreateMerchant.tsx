@@ -84,7 +84,7 @@ export default class CreateMerchant extends React.Component<{}, any> {
                         Description
                     </div>
                     <div className={"col-sm-9"}>
-                        <input id={"desciption"} className={"form-control"} type={"text"}
+                        <input id={"description"} className={"form-control"} type={"text"}
                             onChange={this.setDescription}/>
                     </div>
                 </div>
@@ -94,7 +94,7 @@ export default class CreateMerchant extends React.Component<{}, any> {
                         Postcode
                     </div>
                     <div className={"col-sm-9"}>
-                        <input id={"desciption"} className={"form-control"} type={"text"}
+                        <input id={"postcode"} className={"form-control"} type={"text"}
                                onChange={this.setPostcode}/>
                     </div>
                 </div>

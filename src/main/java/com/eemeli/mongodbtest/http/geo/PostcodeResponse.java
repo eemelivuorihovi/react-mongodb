@@ -23,6 +23,7 @@ public class PostcodeResponse {
     @Setter
     @AllArgsConstructor
     @NoArgsConstructor
+    @Builder
     @JsonIgnoreProperties(ignoreUnknown = true)
     public static class PostcodeResult {
         private String postcode;

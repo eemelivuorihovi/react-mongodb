@@ -31,25 +31,20 @@ public class MerchantConverter implements Converter<MerchantSaveRequest, Merchan
     }
 
     private Location getLocation(String postcode) {
-        try {
-            final PostcodeResponse response = postcodeService.getPostcodeResponse(postcode);
-            if (!response.isOkResponse()) {
-                return Location.builder()
-                        .postcode(postcode)
-                        .build();
-            }
+        final PostcodeResponse.PostcodeResult result = postcodeService.getPostcodeResponse(postcode);
+        final String formatted = formatPostcode(result.getPostcode());
+        return Location.builder()
+                .postcode(formatted)
+                .lat(result.getLatitude())
+                .lng(result.getLongitude())
+                .build();
+    }
 
-            final PostcodeResponse.PostcodeResult result = response.getResult();
-            return Location.builder()
-                    .postcode(result.getPostcode())
-                    .lat(result.getLatitude())
-                    .lng(result.getLongitude())
-                    .build();
-        }
-        catch (Exception e) {
-            return Location.builder()
-                    .postcode(postcode)
-                    .build();
-        }
+    private String formatPostcode(String postcode) {
+        final StringBuilder builder = new StringBuilder(postcode);
+
+        int index = postcode.length() > 5 ? 3 : 2;
+        builder.insert(index, " ");
+        return builder.toString();
     }
 }
