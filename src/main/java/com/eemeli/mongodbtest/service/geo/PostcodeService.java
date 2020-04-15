@@ -1,13 +1,13 @@
 package com.eemeli.mongodbtest.service.geo;
 
 import com.eemeli.mongodbtest.http.geo.PostcodeResponse;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.io.UnsupportedEncodingException;
 import java.math.BigDecimal;
 import java.net.URLEncoder;
-import java.util.Optional;
 
 @Service
 public class PostcodeService {
@@ -24,8 +24,7 @@ public class PostcodeService {
     }
 
     public PostcodeResponse.PostcodeResult getPostcodeResponse(String postcode) {
-        final boolean postcodePresent = Optional.ofNullable(postcode).filter(s -> !s.isEmpty()).isPresent();
-        if (!postcodePresent) {
+        if (StringUtils.isBlank(postcode)) {
             return generateRandomPostcode();
         }
 

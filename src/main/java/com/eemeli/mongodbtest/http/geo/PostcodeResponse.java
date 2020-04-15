@@ -15,10 +15,6 @@ public class PostcodeResponse {
     private int status;
     private PostcodeResult result;
 
-    public boolean isOkResponse() {
-        return this.status == 200;
-    }
-
     @Getter
     @Setter
     @AllArgsConstructor
