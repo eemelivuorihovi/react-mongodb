@@ -1,52 +1,51 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import LoadingIcon from "../layout/LoadingIcon";
 import MerchantList from "./MerchantList";
 import Map from "./Map";
+import Merchant from "../../model/Merchant";
+import {Col, Container, Row} from "react-bootstrap";
 
-class Merchants extends React.Component<{}, any> {
+const Merchants: React.FC = () => {
+    const [merchants, setMerchants] = useState<Merchant[]>([]);
+    const [loading, setLoading] = useState<boolean>(false);
 
-    constructor(props: any) {
-        super(props);
-        this.state = {
-            merchants: [],
-            isLoading: false
+    useEffect(() => {
+        const fetchData = () => {
+            setLoading(true);
+
+            fetch('http://localhost:8080/api/merchant')
+                .then(response => response.json())
+                .then(r => {
+                    setMerchants(r.data);
+                    setLoading(false);
+                });
         };
-    }
 
-    componentDidMount() {
-        this.setState({
-            isLoading: true
-        });
+        fetchData();
+    }, []);
 
-        fetch('http://localhost:8080/api/merchant')
-            .then(response => response.json())
-            .then(r =>
-                this.setState({
-                    merchants: r.data,
-                    isLoading: false
-                })
-            );
-    }
+    return (
 
-    render() {
-        const {merchants, isLoading} = this.state;
-
-        if (isLoading) {
-            return <LoadingIcon/>;
-        }
-
-        return (
-            <div>
-                <h2>Merchants</h2>
-                <div className={"panel panel-default"}>
-                    <MerchantList merchants={merchants}/>
+        <Container fluid className="h-100 d-flex w-100" style={{ paddingLeft: "2em", paddingRight: "2em" }}>
+            {loading ? (
+                <LoadingIcon />
+            ) : (
+                <div>
+                    <Row>
+                        <h2>Merchants</h2>
+                    </Row>
+                    <Row>
+                        <Col>
+                            <MerchantList merchants={merchants}/>
+                        </Col>
+                        <Col>
+                            <Map merchants={merchants}/>
+                        </Col>
+                    </Row>
                 </div>
-                <div className={"panel panel-default"}>
-                    <Map merchants={merchants}/>
-                </div>
-            </div>
-        );
-    }
-}
+            )}
+        </Container>
+    );
+};
 
 export default Merchants;

@@ -1,4 +1,5 @@
 import React from "react";
+import {Container} from "react-bootstrap";
 
 export default class CreateMerchant extends React.Component<{}, any> {
 
@@ -57,48 +58,51 @@ export default class CreateMerchant extends React.Component<{}, any> {
 
     render() {
         return (
-            <form onSubmit={this.save}>
-                <div className={"row form-group"}>
-                    <div className={"col-sm-10"}>
-                        <h2>Add Merchant</h2>
-                    </div>
-                    <div className={"col-sm-2"}>
-                        <button className={"btn btn-success pull-right"} type={"submit"}>
-                            <span>
-                                Save&nbsp;
-                                <i className={"fa fa-floppy-o fa-lg"}/>
-                            </span>
-                        </button>
-                    </div>
-                </div>
-                <div className={"row form-group"}>
-                    <div className={"col-sm-3"}>Name</div>
-                    <div className={"col-sm-9"}>
-                        <input id={"name"} className={"form-control"} type={"text"}
-                            onChange={this.setName}/>
-                    </div>
-                </div>
 
-                <div className={"row form-group"}>
-                    <div className={"col-sm-3"}>
-                        Description
+            <Container>
+                <form onSubmit={this.save}>
+                    <div className={"row form-group"}>
+                        <div className={"col-sm-10"}>
+                            <h2>Add Merchant</h2>
+                        </div>
+                        <div className={"col-sm-2"}>
+                            <button className={"btn btn-success pull-right"} type={"submit"}>
+                                <span>
+                                    Save&nbsp;
+                                    <i className={"fa fa-floppy-o fa-lg"}/>
+                                </span>
+                            </button>
+                        </div>
                     </div>
-                    <div className={"col-sm-9"}>
-                        <input id={"description"} className={"form-control"} type={"text"}
-                            onChange={this.setDescription}/>
+                    <div className={"row form-group"}>
+                        <div className={"col-sm-3"}>Name</div>
+                        <div className={"col-sm-9"}>
+                            <input id={"name"} className={"form-control"} type={"text"}
+                                onChange={this.setName}/>
+                        </div>
                     </div>
-                </div>
 
-                <div className={"row form-group"}>
-                    <div className={"col-sm-3"}>
-                        Postcode
+                    <div className={"row form-group"}>
+                        <div className={"col-sm-3"}>
+                            Description
+                        </div>
+                        <div className={"col-sm-9"}>
+                            <input id={"description"} className={"form-control"} type={"text"}
+                                onChange={this.setDescription}/>
+                        </div>
                     </div>
-                    <div className={"col-sm-9"}>
-                        <input id={"postcode"} className={"form-control"} type={"text"}
-                               onChange={this.setPostcode}/>
+
+                    <div className={"row form-group"}>
+                        <div className={"col-sm-3"}>
+                            Postcode
+                        </div>
+                        <div className={"col-sm-9"}>
+                            <input id={"postcode"} className={"form-control"} type={"text"}
+                                   onChange={this.setPostcode}/>
+                        </div>
                     </div>
-                </div>
-            </form>
+                </form>
+            </Container>
         );
     }
 }

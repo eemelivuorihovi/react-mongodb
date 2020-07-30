@@ -1,10 +1,11 @@
 import React from "react";
+import {Spinner} from "react-bootstrap";
 
 const LoadingIcon = () => {
     return (
-        <div className={"loading-icon"}>
-            <i className={"fa fa-spinner fa-4x fa-spin"}/>
-        </div>
+        <Spinner style={{ display: "block", marginLeft: "auto", marginRight: "auto", height: "5rem", width: "5rem" }}
+                 animation="border"
+                 variant="dark" />
     );
 };
 

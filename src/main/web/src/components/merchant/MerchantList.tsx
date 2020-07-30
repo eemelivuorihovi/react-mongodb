@@ -1,29 +1,31 @@
-import React from "react";
-import {Link} from "react-router-dom";
+import React, {useState} from "react";
+import Merchant from "../../model/Merchant";
+import EditContext from "../../context/EditContext";
+import {Button, ButtonGroup} from "react-bootstrap";
+import {faPencilAlt, faTrashAlt} from "@fortawesome/free-solid-svg-icons";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import EditModal from "./EditModal";
 
-export default class MerchantList extends React.Component<any, any> {
-    constructor(props: any) {
-        super(props);
-        this.state = {
-            merchants: props.merchants
-        }
-    }
+interface Props {
+    merchants: Merchant[]
+}
 
-    deleteMerchant(id: string) {
+const MerchantList: React.FC<Props> = (props: Props) => {
+    const [merchants, setMerchants] = useState<Merchant[]>(props.merchants);
+
+    const deleteMerchant = (id: string) => {
         let url = "http://localhost:8080/api/merchant/" + id + "/delete";
         fetch(url)
             .then(response => response.json())
             .then(r => {
                 if (r.success) {
-                    let merchants =
-                        this.state.merchants
-                            .filter((m: any) => {
+                    let filtered =
+                        merchants
+                            .filter((m: Merchant) => {
                                 return m.id !== id;
                             });
 
-                    this.setState({
-                        merchants: merchants
-                    });
+                    setMerchants(filtered);
                 }
                 else {
                     throw new Error(r.message);
@@ -31,36 +33,48 @@ export default class MerchantList extends React.Component<any, any> {
             })
             .catch(error => {
                 console.error(error);
-            })
-    }
+            });
+    };
 
-    render() {
-        const {merchants} = this.state;
+    const [showEditModal, setShowEdit] = useState<boolean>(false);
+    const setShowEditModal = (show: boolean) => setShowEdit(show);
 
-        return (
+    const [editMerchant, setEditMerchantState] = useState<Merchant>(null);
+    const setEditMerchant = (m: Merchant) => setEditMerchantState(m);
+
+    return (
+        <EditContext.Provider value={{editMerchant, setEditMerchant, showEditModal, setShowEditModal}}>
             <div className="merchant-list">
                 <ul className="list-group">
-                    {merchants.map((merchant: any) =>
+                    {merchants.map((merchant: Merchant) =>
                         <li key={merchant.id} className="list-group-item">
                             <div className="row">
                                 <div className="col-sm-9">
                                     {merchant.name}
                                 </div>
                                 <div className="col-sm-3">
-                                    <div className="btn-group pull-right">
-                                        <Link to={"/edit/" + merchant.id} className={"btn btn-edit mr-2 btn-sm"} title={"Edit " + merchant.name}>
-                                            <i className={"fa fa-pencil fa-lg"}/>
-                                        </Link>
-                                        <button className={"btn btn-danger btn-sm"} onClick={() => this.deleteMerchant(merchant.id)}>
-                                            <i className={"fa fa-trash fa-lg"}/>
-                                        </button>
-                                    </div>
+                                    <ButtonGroup className="pull-right">
+                                        <Button variant="outline-warning" size="sm" onClick={() => {
+                                            setEditMerchant(merchant);
+                                            setShowEditModal(true)
+                                        }}>
+                                            <FontAwesomeIcon icon={faPencilAlt} />
+                                        </Button>
+                                        <Button variant="danger" size="sm" onClick={() => deleteMerchant(merchant.id)}>
+                                            <FontAwesomeIcon icon={faTrashAlt} />
+                                        </Button>
+                                    </ButtonGroup>
                                 </div>
                             </div>
                         </li>
                     )}
                 </ul>
             </div>
-        );
-    }
-}
+            {editMerchant && (
+                <EditModal merchant={editMerchant}/>
+            )}
+        </EditContext.Provider>
+    );
+};
+
+export default MerchantList;

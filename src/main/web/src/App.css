@@ -54,3 +54,7 @@ a.nav-link.active:hover {
   overflow-y: auto;
   margin-bottom: 1em;
 }
+
+.container {
+  width: 90%;
+}
