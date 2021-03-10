@@ -1,6 +1,6 @@
 import React, {useState} from "react";
 import {useHistory} from "react-router-dom";
-import {Container} from "react-bootstrap";
+import {Col, Row} from "react-bootstrap";
 import Merchant from "../../model/Merchant";
 import axios from "axios";
 import Creatable from "react-select/creatable";
@@ -66,59 +66,63 @@ const CreateMerchant: React.FC = () => {
     };
 
     return (
-        <Container>
-            <div className="row form-group">
-                <div className="col-sm-10">
-                    <h2>{i18n("merchants.add")}</h2>
-                </div>
-                <div className="col-sm-2">
-                    <button className="btn btn-success pull-right" onClick={save}>
-                        <span>
-                            <span className="pr-2">{i18n("save")}</span>
-                            <i className="fa fa-floppy-o fa-lg"/>
-                        </span>
-                    </button>
-                </div>
-            </div>
-            <div className="row form-group">
-                <div className="col-sm-3">{i18n("merchants.name")}</div>
-                <div className="col-sm-9">
-                    <input id="name" className="form-control" type="text"
-                           onChange={setName}/>
-                </div>
-            </div>
+        <Row className="pt-3">
+            <Col>
+                <div className="content-card" style={{minWidth: "60vw"}}>
+                    <div className="row form-group">
+                        <div className="col-sm-10 content-card-header">
+                            <span>{i18n("merchants.add")}</span>
+                        </div>
+                        <div className="col-sm-2">
+                            <button className="btn btn-success pull-right" onClick={save}>
+                                <span>
+                                    <span className="pr-2">{i18n("save")}</span>
+                                    <i className="fa fa-floppy-o fa-lg"/>
+                                </span>
+                            </button>
+                        </div>
+                    </div>
+                    <div className="row form-group">
+                        <div className="col-sm-3">{i18n("merchants.name")}</div>
+                        <div className="col-sm-9">
+                            <input id="name" className="form-control" type="text"
+                                   onChange={setName}/>
+                        </div>
+                    </div>
 
-            <div className="row form-group">
-                <div className="col-sm-3">
-                    {i18n("merchants.description")}
-                </div>
-                <div className="col-sm-9">
-                    <input id="description" className="form-control" type="text"
-                           onChange={setDescription}/>
-                </div>
-            </div>
+                    <div className="row form-group">
+                        <div className="col-sm-3">
+                            {i18n("merchants.description")}
+                        </div>
+                        <div className="col-sm-9">
+                            <input id="description" className="form-control" type="text"
+                                   onChange={setDescription}/>
+                        </div>
+                    </div>
 
-            <div className="row form-group">
-                <div className="col-sm-3">
-                    {i18n("merchants.postcode")}
-                </div>
-                <div className="col-sm-9">
-                    <input id="postcode" className="form-control" type="text"
-                           onChange={setPostcode}/>
-                </div>
-            </div>
+                    <div className="row form-group">
+                        <div className="col-sm-3">
+                            {i18n("merchants.postcode")}
+                        </div>
+                        <div className="col-sm-9">
+                            <input id="postcode" className="form-control" type="text"
+                                   onChange={setPostcode}/>
+                        </div>
+                    </div>
 
-            <div className="row form-group">
-                <div className="col-sm-3">
-                    {i18n("merchants.tags")}
+                    <div className="row form-group">
+                        <div className="col-sm-3">
+                            {i18n("merchants.tags")}
+                        </div>
+                        <div className="col-sm-9">
+                            <Creatable onChange={(e: any) => setTags(e)}
+                                       placeholder="Add tags"
+                                       isMulti/>
+                        </div>
+                    </div>
                 </div>
-                <div className="col-sm-9">
-                    <Creatable onChange={(e: any) => setTags(e)}
-                               placeholder="Add tags"
-                               isMulti/>
-                </div>
-            </div>
-        </Container>
+            </Col>
+        </Row>
     );
 };
 

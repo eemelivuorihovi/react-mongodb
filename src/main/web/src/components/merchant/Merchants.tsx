@@ -24,15 +24,14 @@ const Merchants: React.FC = () => {
     }, []);
 
     return (
-
-        <Container fluid className="h-100 d-flex w-100" style={{ paddingLeft: "2em", paddingRight: "2em" }}>
+        <div>
             {loading ? (
                 <LoadingIcon />
             ) : (
-                <div className="pl-3">
+                <div className="content-card pl-3">
                     <Row>
-                        <Col className="pl-5">
-                            <h2>{i18n("merchants.title")}</h2>
+                        <Col className="pl-5 content-card-header">
+                            <span>{i18n("merchants.title")}</span>
                         </Col>
                     </Row>
                     <Row>
@@ -45,7 +44,7 @@ const Merchants: React.FC = () => {
                     </Row>
                 </div>
             )}
-        </Container>
+        </div>
     );
 };
 

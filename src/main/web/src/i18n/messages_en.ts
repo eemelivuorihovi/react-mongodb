@@ -1,4 +1,5 @@
 export default {
+    menu: "Menu",
     merchants: {
         title: "Merchants",
         add: "Add Merchant",

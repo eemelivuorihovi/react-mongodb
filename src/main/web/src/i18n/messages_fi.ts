@@ -1,4 +1,5 @@
 export default {
+    menu: "Valikko",
     merchants: {
         title: "Kauppiaat",
         add: "Lisää Kauppias",

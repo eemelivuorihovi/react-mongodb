@@ -1,0 +1,150 @@
+.aside-body {
+    position: relative;
+    padding-left: 25px;
+    padding-right: 25px;
+    padding-top: 10px;
+    height: calc(100% - 59px);
+    background-color: #FFFFFF;
+    height: 100vh;
+}
+
+.aside.minimize .aside-body {
+    width: 60px;
+    padding: 15px;
+    transition: none;
+}
+
+.nav-aside {
+    flex-direction: column;
+    line-height: 1.6;
+    font-size: 13px;
+    margin-bottom: 25px;
+}
+
+.nav {
+    display: flex;
+    flex-wrap: wrap;
+    padding-left: 0;
+    margin-bottom: 0;
+    list-style: none;
+}
+
+.aside-body .nav-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+}
+
+.aside-body .nav-content .nav-content-submenu {
+    display: flex;
+    flex-direction: column;
+    height: 80%;
+    overflow-y: auto;
+}
+
+.nav-aside .nav-label {
+    margin-top: 10px;
+    font-size: 18px;
+    font-family: "Trebuchet MS", Helvetica, sans-serif;
+    letter-spacing: 0.5px;
+    color: #929292;
+    margin-bottom: 5px;
+    display: block;
+    transition: all 0.25s;
+}
+
+.nav-aside .nav-item + .nav-item {
+    margin-top: 1px;
+}
+
+.nav-aside .nav-item {
+    position: relative;
+}
+
+.nav-aside .sb-nav-link:hover {
+    background-color: rgba(29, 161, 242, 0.1);
+    transition-property: background-color, box-shadow;
+    transition-duration: 0.2s;
+    text-decoration: none;
+}
+
+.nav-aside .nav-link {
+    position: relative;
+    display: flex;
+    align-items: center;
+    padding: 0;
+    height: 30px;
+    color: rgba(27, 46, 75, 0.9);
+    font-size: 15px;
+    transition: all 0.25s;
+}
+
+.sb-nav-link {
+    color: #596882;
+    font-weight: 500;
+}
+
+.sb-nav-link.active {
+    color: #3078c7;
+}
+
+.sb-nav-link {
+    display: block;
+    padding: 0.5rem 1rem;
+}
+
+a {
+    color: #0168fa;
+    text-decoration: none;
+    background-color: transparent;
+}
+
+#sidebar-logo {
+    display: block;
+    width: 100%;
+    margin-right: auto;
+    margin-left: auto;
+    margin-top: -10px;
+    /* height: 60px; */
+}
+
+#sidebar-logo-small {
+    display: block;
+    width: 100%;
+    margin-right: auto;
+    margin-left: auto;
+    /* height: 60px; */
+}
+
+#sidebar-logo img {
+    width: 100%;
+}
+
+#sidebar-logo-small img {
+    width: 100%;
+}
+
+.sidebar-button {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+    height: 100%;
+}
+
+.sidebar-buttons-container {
+    padding-top: 25px;
+}
+
+.sidebar-button-container {
+    display: inline-block;
+    width: 100%;
+    height: 50px;
+}
+
+.sidebar-button-container:hover {
+    display: inline-block;
+    height: 50px;
+    background-color: #2296f3;
+}
