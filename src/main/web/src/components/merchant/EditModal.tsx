@@ -79,7 +79,7 @@ const EditModal: React.FC<Props> = (props: Props) => {
     };
 
     return (
-        <Modal show={showEditModal} onHide={handleClose}>
+        <Modal show={showEditModal} onHide={handleClose} size="lg">
             <Modal.Header closeButton>
                 <Modal.Title>Edit {editMerchant.name}</Modal.Title>
             </Modal.Header>
