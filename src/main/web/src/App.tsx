@@ -1,23 +1,30 @@
-import React from 'react';
+import React, {useState} from 'react';
 import './App.css';
 import {BrowserRouter as Router, Route, Switch} from "react-router-dom";
 import Navbar from "./components/layout/Navbar";
 import Merchants from "./components/merchant/Merchants";
 import CreateMerchant from "./components/merchant/CreateMerchant";
+import {flattenMessages, messages} from "./i18n/translate";
+import I18nContext from "./context/I18nContext";
+import {IntlProvider} from 'react-intl';
 
-class App extends React.Component<{}, any> {
-    render() {
-        return (
-            <Router>
-                <Navbar/>
+const App: React.FC = () => {
+    const [lang, setLang] = useState<string>("en");
 
-                <Switch>
-                    <Route exact path={"/"} component={Merchants}/>
-                    <Route path={"/add"} component={CreateMerchant}/>
-                </Switch>
-            </Router>
-        );
-    }
+    return (
+        <Router>
+            <I18nContext.Provider value={{ lang, setLang }}>
+                <IntlProvider locale={lang} messages={flattenMessages(messages[lang])}>
+                    <Navbar/>
+
+                    <Switch>
+                        <Route exact path="/" component={Merchants}/>
+                        <Route path="/add" component={CreateMerchant}/>
+                    </Switch>
+                </IntlProvider>
+            </I18nContext.Provider>
+        </Router>
+    );
 }
 
 export default App;

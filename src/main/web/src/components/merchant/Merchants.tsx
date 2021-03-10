@@ -5,6 +5,7 @@ import Map from "./Map";
 import Merchant from "../../model/Merchant";
 import {Col, Container, Row} from "react-bootstrap";
 import axios from "axios";
+import i18n from "../../i18n/translate";
 
 const Merchants: React.FC = () => {
     const [merchants, setMerchants] = useState<Merchant[]>([]);
@@ -31,7 +32,7 @@ const Merchants: React.FC = () => {
                 <div className="pl-3">
                     <Row>
                         <Col>
-                            <h2>Merchants</h2>
+                            <h2>{i18n("merchants.title")}</h2>
                         </Col>
                     </Row>
                     <Row>

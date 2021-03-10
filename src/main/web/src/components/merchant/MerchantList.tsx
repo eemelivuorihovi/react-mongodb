@@ -6,6 +6,7 @@ import {faPencilAlt, faTrashAlt} from "@fortawesome/free-solid-svg-icons";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import EditModal from "./EditModal";
 import axios from "axios";
+import i18n from "../../i18n/translate";
 
 interface Props {
     merchants: Merchant[]
@@ -55,13 +56,19 @@ const MerchantList: React.FC<Props> = (props: Props) => {
                                 </div>
                                 <div className="col-sm-3">
                                     <ButtonGroup className="pull-right">
-                                        <Button variant="outline-warning" size="sm" onClick={() => {
-                                            setEditMerchant(merchant);
-                                            setShowEditModal(true)
-                                        }}>
+                                        <Button variant="outline-warning"
+                                                size="sm"
+                                                title={i18n("edit")}
+                                                onClick={() => {
+                                                    setEditMerchant(merchant);
+                                                    setShowEditModal(true)
+                                                }}>
                                             <FontAwesomeIcon icon={faPencilAlt} />
                                         </Button>
-                                        <Button variant="danger" size="sm" onClick={() => deleteMerchant(merchant.id)}>
+                                        <Button variant="danger"
+                                                size="sm"
+                                                title={i18n("delete")}
+                                                onClick={() => deleteMerchant(merchant.id)}>
                                             <FontAwesomeIcon icon={faTrashAlt} />
                                         </Button>
                                     </ButtonGroup>

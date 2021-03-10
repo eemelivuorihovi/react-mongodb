@@ -5,6 +5,7 @@ import Merchant from "../../model/Merchant";
 import axios from "axios";
 import Creatable from "react-select/creatable";
 import SelectOption from "../../model/SelectOption";
+import i18n from "../../i18n/translate";
 
 const CreateMerchant: React.FC = () => {
     let history = useHistory();
@@ -68,19 +69,19 @@ const CreateMerchant: React.FC = () => {
         <Container>
             <div className="row form-group">
                 <div className="col-sm-10">
-                    <h2>Add Merchant</h2>
+                    <h2>{i18n("merchants.add")}</h2>
                 </div>
                 <div className="col-sm-2">
                     <button className="btn btn-success pull-right" onClick={save}>
                         <span>
-                            <span className="pr-2">Save</span>
+                            <span className="pr-2">{i18n("save")}</span>
                             <i className="fa fa-floppy-o fa-lg"/>
                         </span>
                     </button>
                 </div>
             </div>
             <div className="row form-group">
-                <div className="col-sm-3">Name</div>
+                <div className="col-sm-3">{i18n("merchants.name")}</div>
                 <div className="col-sm-9">
                     <input id="name" className="form-control" type="text"
                            onChange={setName}/>
@@ -89,7 +90,7 @@ const CreateMerchant: React.FC = () => {
 
             <div className="row form-group">
                 <div className="col-sm-3">
-                    Description
+                    {i18n("merchants.description")}
                 </div>
                 <div className="col-sm-9">
                     <input id="description" className="form-control" type="text"
@@ -99,7 +100,7 @@ const CreateMerchant: React.FC = () => {
 
             <div className="row form-group">
                 <div className="col-sm-3">
-                    Postcode
+                    {i18n("merchants.postcode")}
                 </div>
                 <div className="col-sm-9">
                     <input id="postcode" className="form-control" type="text"
@@ -109,7 +110,7 @@ const CreateMerchant: React.FC = () => {
 
             <div className="row form-group">
                 <div className="col-sm-3">
-                    Tags
+                    {i18n("merchants.tags")}
                 </div>
                 <div className="col-sm-9">
                     <Creatable onChange={(e: any) => setTags(e)}

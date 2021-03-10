@@ -7,6 +7,7 @@ import EditContext from "../../context/EditContext";
 import Location from "../../model/Location";
 import Creatable from "react-select/creatable";
 import SelectOption from "../../model/SelectOption";
+import i18n from "../../i18n/translate";
 
 interface Props {
     merchant: Merchant
@@ -86,28 +87,28 @@ const EditModal: React.FC<Props> = (props: Props) => {
             <Modal.Body>
                 <InputGroup className="mb-3">
                     <InputGroup.Prepend>
-                        <InputGroup.Text>Name</InputGroup.Text>
+                        <InputGroup.Text>{i18n("merchants.name")}</InputGroup.Text>
                     </InputGroup.Prepend>
-                    <FormControl placeholder="Name" value={merchant.name} onChange={(event: any) => setName(event)}/>
+                    <FormControl placeholder={i18n("merchants.name")} value={merchant.name} onChange={(event: any) => setName(event)}/>
                 </InputGroup>
                 <InputGroup className="mb-3">
                     <InputGroup.Prepend>
-                        <InputGroup.Text>Description</InputGroup.Text>
+                        <InputGroup.Text>{i18n("merchants.description")}</InputGroup.Text>
                     </InputGroup.Prepend>
                     <FormControl as="textarea"
-                                 placeholder="Description"
+                                 placeholder={i18n("merchants.description")}
                                  value={merchant.description}
                                  onChange={(event: any) => setDescription(event)}/>
                 </InputGroup>
                 <InputGroup className="mb-3">
                     <InputGroup.Prepend>
-                        <InputGroup.Text>Postcode</InputGroup.Text>
+                        <InputGroup.Text>{i18n("merchants.postcode")}</InputGroup.Text>
                     </InputGroup.Prepend>
-                    <FormControl placeholder="Postcode" value={merchant.location.postcode} onChange={(event: any) => setPostcode(event)}/>
+                    <FormControl placeholder={i18n("merchants.postcode")} value={merchant.location.postcode} onChange={(event: any) => setPostcode(event)}/>
                 </InputGroup>
 
                 <Creatable onChange={(e: any) => setTags(e)}
-                           placeholder="Add tags"
+                           placeholder={i18n("merchants.tags")}
                            isMulti
                            value={
                                merchant.tags.map(tag => ({
@@ -125,6 +126,9 @@ const EditModal: React.FC<Props> = (props: Props) => {
             <Modal.Footer>
                 {saving ? (
                     <Button variant="success" disabled>
+                        <span className="mr-2">
+                            {i18n("saving")}
+                        </span>
                         <Spinner
                             as="span"
                             animation="border"
@@ -132,13 +136,15 @@ const EditModal: React.FC<Props> = (props: Props) => {
                             role="status"
                             aria-hidden="true"
                         />
-                        &nbsp;Saving...
                     </Button>
                 ) : (
                     <Button variant="success"
                             className="pull-right"
                             onClick={() => save()}>
-                        <span className="mr-2">Save</span><FontAwesomeIcon icon={faSave}/>
+                        <span className="mr-2">
+                            {i18n("save")}
+                        </span>
+                        <FontAwesomeIcon icon={faSave}/>
                     </Button>
                 )}
             </Modal.Footer>
