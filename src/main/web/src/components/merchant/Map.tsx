@@ -6,7 +6,7 @@ export default function Map(props: any) {
         latitude: 53.407154,
         longitude: -2.991665,
         width: '60vw',
-        height: '45vh',
+        height: '80vh',
         zoom: 10
     });
 
@@ -33,6 +33,7 @@ export default function Map(props: any) {
             {merchants.map((merchant: any) => {
                 return (
                     <Marker key={merchant.id}
+                            offsetTop={-10}
                             latitude={merchant.location.lat}
                             longitude={merchant.location.lng}>
                         <div className={"map-marker"}
@@ -54,8 +55,8 @@ export default function Map(props: any) {
                 <Popup longitude={selected.location.lng}
                        latitude={selected.location.lat}
                        onClose={() => setSelected(null)}>
-                    <div>
-                        <h6>{selected.name}</h6>
+                    <div className="p-3">
+                        <h6 className="text-uppercase">{selected.name}</h6>
                         <p>{selected.description}</p>
                         <i className="fa fa-location-arrow"/> {selected.location.postcode}
                     </div>

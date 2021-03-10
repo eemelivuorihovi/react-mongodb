@@ -4,21 +4,19 @@ import MerchantList from "./MerchantList";
 import Map from "./Map";
 import Merchant from "../../model/Merchant";
 import {Col, Container, Row} from "react-bootstrap";
+import axios from "axios";
 
 const Merchants: React.FC = () => {
     const [merchants, setMerchants] = useState<Merchant[]>([]);
     const [loading, setLoading] = useState<boolean>(false);
 
     useEffect(() => {
-        const fetchData = () => {
+        const fetchData = async () => {
             setLoading(true);
 
-            fetch('http://localhost:8080/api/merchant')
-                .then(response => response.json())
-                .then(r => {
-                    setMerchants(r.data);
-                    setLoading(false);
-                });
+            await axios.get('http://localhost:8080/api/merchant')
+                .then(r => setMerchants(r.data.data))
+                .finally(() => setLoading(false));
         };
 
         fetchData();
@@ -30,9 +28,11 @@ const Merchants: React.FC = () => {
             {loading ? (
                 <LoadingIcon />
             ) : (
-                <div>
+                <div className="pl-3">
                     <Row>
-                        <h2>Merchants</h2>
+                        <Col>
+                            <h2>Merchants</h2>
+                        </Col>
                     </Row>
                     <Row>
                         <Col>

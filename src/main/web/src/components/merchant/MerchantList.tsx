@@ -5,6 +5,7 @@ import {Button, ButtonGroup} from "react-bootstrap";
 import {faPencilAlt, faTrashAlt} from "@fortawesome/free-solid-svg-icons";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import EditModal from "./EditModal";
+import axios from "axios";
 
 interface Props {
     merchants: Merchant[]
@@ -13,12 +14,12 @@ interface Props {
 const MerchantList: React.FC<Props> = (props: Props) => {
     const [merchants, setMerchants] = useState<Merchant[]>(props.merchants);
 
-    const deleteMerchant = (id: string) => {
+    const deleteMerchant = async (id: string) => {
         let url = "http://localhost:8080/api/merchant/" + id + "/delete";
-        fetch(url)
-            .then(response => response.json())
+        await axios.delete(url)
             .then(r => {
-                if (r.success) {
+                let response = r.data;
+                if (response.success) {
                     let filtered =
                         merchants
                             .filter((m: Merchant) => {
@@ -28,7 +29,7 @@ const MerchantList: React.FC<Props> = (props: Props) => {
                     setMerchants(filtered);
                 }
                 else {
-                    throw new Error(r.message);
+                    throw new Error(response.message);
                 }
             })
             .catch(error => {

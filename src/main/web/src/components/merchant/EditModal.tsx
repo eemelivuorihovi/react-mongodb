@@ -5,6 +5,8 @@ import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faSave} from "@fortawesome/free-solid-svg-icons";
 import EditContext from "../../context/EditContext";
 import Location from "../../model/Location";
+import Creatable from "react-select/creatable";
+import SelectOption from "../../model/SelectOption";
 
 interface Props {
     merchant: Merchant
@@ -45,6 +47,14 @@ const EditModal: React.FC<Props> = (props: Props) => {
         };
 
         setMerchant(m);
+    };
+
+    const setTags = (selection: SelectOption[]) => {
+        let t = selection.map(tag => tag.value);
+        setMerchant({
+            ...merchant,
+            tags: t
+        });
     };
 
     const [saving, setSaving] = useState<boolean>(false);
@@ -95,6 +105,22 @@ const EditModal: React.FC<Props> = (props: Props) => {
                     </InputGroup.Prepend>
                     <FormControl placeholder="Postcode" value={merchant.location.postcode} onChange={(event: any) => setPostcode(event)}/>
                 </InputGroup>
+
+                <Creatable onChange={(e: any) => setTags(e)}
+                           placeholder="Add tags"
+                           isMulti
+                           value={
+                               merchant.tags.map(tag => ({
+                                   value: tag,
+                                   label: tag
+                               }))
+                           }
+                           options={
+                               merchant.tags.map(tag => ({
+                                   value: tag,
+                                   label: tag
+                               }))
+                           } />
             </Modal.Body>
             <Modal.Footer>
                 {saving ? (
@@ -112,7 +138,7 @@ const EditModal: React.FC<Props> = (props: Props) => {
                     <Button variant="success"
                             className="pull-right"
                             onClick={() => save()}>
-                        Save <FontAwesomeIcon icon={faSave}/>
+                        <span className="mr-2">Save</span><FontAwesomeIcon icon={faSave}/>
                     </Button>
                 )}
             </Modal.Footer>

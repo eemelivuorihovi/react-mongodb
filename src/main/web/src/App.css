@@ -50,7 +50,7 @@ a.nav-link.active:hover {
 }
 
 .merchant-list {
-  max-height: 35vh;
+  max-height: 80vh;
   overflow-y: auto;
   margin-bottom: 1em;
 }
