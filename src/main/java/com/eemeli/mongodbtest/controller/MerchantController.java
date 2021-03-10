@@ -2,8 +2,7 @@ package com.eemeli.mongodbtest.controller;
 
 import com.eemeli.mongodbtest.domain.Merchant;
 import com.eemeli.mongodbtest.http.ApiResponse;
-import com.eemeli.mongodbtest.http.converters.ApiConversionService;
-import com.eemeli.mongodbtest.http.merchant.MerchantSaveRequest;
+import com.eemeli.mongodbtest.model.MerchantDTO;
 import com.eemeli.mongodbtest.service.MerchantService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -18,17 +17,14 @@ import java.util.Optional;
 public class MerchantController {
 
     private final MerchantService merchantService;
-    private final ApiConversionService apiConversionService;
 
-    @Autowired
-    public MerchantController(MerchantService merchantService, ApiConversionService apiConversionService) {
+    public MerchantController(MerchantService merchantService) {
         this.merchantService = merchantService;
-        this.apiConversionService = apiConversionService;
     }
 
     @GetMapping()
-    public ResponseEntity<?> getMerchants() {
-        final List<Merchant> merchants = merchantService.findAll();
+    public ResponseEntity<ApiResponse> getMerchants() {
+        final List<MerchantDTO> merchants = merchantService.findAll();
         return ResponseEntity.ok(
                 ApiResponse.builder()
                         .success(true)
@@ -38,7 +34,7 @@ public class MerchantController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<?> getMerchant(@PathVariable("id") String id) {
+    public ResponseEntity<ApiResponse> getMerchant(@PathVariable("id") String id) {
         final Optional<Merchant> merchantOptional = merchantService.findById(id);
         if (!merchantOptional.isPresent()) {
             return getBadRequestResponse(id);
@@ -54,30 +50,19 @@ public class MerchantController {
     }
 
     @PostMapping("/save")
-    public ResponseEntity<?> save(@RequestBody MerchantSaveRequest request) {
-        final Merchant merchant =
-                merchantService.save(
-                        apiConversionService.convert(request, Merchant.class)
-                );
-
+    public ResponseEntity<ApiResponse> save(@RequestBody MerchantDTO request) {
+        final MerchantDTO saved = merchantService.save(request);
         return ResponseEntity.ok(
                 ApiResponse.builder()
                         .success(true)
-                        .data(merchant)
+                        .data(saved)
                         .build()
         );
     }
 
-    @GetMapping("/{id}/delete")
-    public ResponseEntity<?> delete(@PathVariable("id") String id) {
-        final Optional<Merchant> merchantOptional = merchantService.findById(id);
-        if (!merchantOptional.isPresent()) {
-            return getBadRequestResponse(id);
-        }
-
-        final Merchant merchant = merchantOptional.get();
-        merchantService.delete(merchant);
-
+    @DeleteMapping("/{id}/delete")
+    public ResponseEntity<ApiResponse> delete(@PathVariable("id") String id) {
+        merchantService.delete(id);
         return ResponseEntity.ok(
                 ApiResponse.builder()
                         .success(true)
@@ -85,7 +70,7 @@ public class MerchantController {
         );
     }
 
-    private ResponseEntity<?> getBadRequestResponse(String id) {
+    private ResponseEntity<ApiResponse> getBadRequestResponse(String id) {
         return ResponseEntity.badRequest().body(
                 ApiResponse.builder()
                         .success(false)

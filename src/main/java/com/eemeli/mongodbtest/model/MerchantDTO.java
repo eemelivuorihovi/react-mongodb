@@ -1,5 +1,6 @@
-package com.eemeli.mongodbtest.http.merchant;
+package com.eemeli.mongodbtest.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -12,10 +13,11 @@ import java.util.List;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class MerchantSaveRequest {
+@JsonIgnoreProperties(ignoreUnknown = true)
+public class MerchantDTO {
     private String id;
     private String name;
     private String description;
-    private String postcode;
+    private LocationDTO location;
     private List<String> tags = new ArrayList<>();
 }

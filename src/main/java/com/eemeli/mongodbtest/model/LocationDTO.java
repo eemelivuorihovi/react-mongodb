@@ -1,5 +1,6 @@
-package com.eemeli.mongodbtest.domain;
+package com.eemeli.mongodbtest.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -11,7 +12,8 @@ import java.math.BigDecimal;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class Location {
+@JsonIgnoreProperties(ignoreUnknown = true)
+public class LocationDTO {
     private String postcode;
     private BigDecimal lat;
     private BigDecimal lng;

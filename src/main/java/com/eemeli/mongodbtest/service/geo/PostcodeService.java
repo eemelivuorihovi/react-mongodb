@@ -2,7 +2,6 @@ package com.eemeli.mongodbtest.service.geo;
 
 import com.eemeli.mongodbtest.http.geo.PostcodeResponse;
 import org.apache.commons.lang3.StringUtils;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.io.UnsupportedEncodingException;
@@ -17,7 +16,6 @@ public class PostcodeService {
     private final PostcodesClient postcodesClient;
     private final PostcodeGenerator postcodeGenerator;
 
-    @Autowired
     public PostcodeService(PostcodesClient postcodesClient, PostcodeGenerator postcodeGenerator) {
         this.postcodesClient = postcodesClient;
         this.postcodeGenerator = postcodeGenerator;
