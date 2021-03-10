@@ -47,11 +47,11 @@ const MerchantList: React.FC<Props> = (props: Props) => {
     return (
         <EditContext.Provider value={{editMerchant, setEditMerchant, showEditModal, setShowEditModal}}>
             <div className="merchant-list">
-                <ul className="list-group">
+                <ul className="ulist">
                     {merchants.map((merchant: Merchant) =>
-                        <li key={merchant.id} className="list-group-item">
+                        <li key={merchant.id} className="ulist-item">
                             <div className="row">
-                                <div className="col-sm-9">
+                                <div className="col-sm-9 pt-1">
                                     {merchant.name}
                                 </div>
                                 <div className="col-sm-3">

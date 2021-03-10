@@ -4,12 +4,13 @@ import {BrowserRouter as Router, Route, Switch} from "react-router-dom";
 import Navbar from "./components/layout/Navbar";
 import Merchants from "./components/merchant/Merchants";
 import CreateMerchant from "./components/merchant/CreateMerchant";
-import {flattenMessages, messages} from "./i18n/translate";
+import {flattenMessages, LANG_KEY, messages} from "./i18n/translate";
 import I18nContext from "./context/I18nContext";
 import {IntlProvider} from 'react-intl';
 
 const App: React.FC = () => {
-    const [lang, setLang] = useState<string>("en");
+    let locale = localStorage.getItem(LANG_KEY);
+    const [lang, setLang] = useState<string>(locale ? locale : "en");
 
     return (
         <Router>

@@ -31,7 +31,7 @@ const Merchants: React.FC = () => {
             ) : (
                 <div className="pl-3">
                     <Row>
-                        <Col>
+                        <Col className="pl-5">
                             <h2>{i18n("merchants.title")}</h2>
                         </Col>
                     </Row>
