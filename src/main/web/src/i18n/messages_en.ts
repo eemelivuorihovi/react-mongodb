@@ -11,5 +11,6 @@ export default {
     edit: "Edit",
     delete: "Delete",
     save: "Save",
-    saving: "Saving..."
+    saving: "Saving...",
+    map: "Map"
 }

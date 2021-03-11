@@ -11,5 +11,6 @@ export default {
     edit: "Muokkaa",
     delete: "Poista",
     save: "Tallenna",
-    saving: "Tallentaa..."
+    saving: "Tallentaa...",
+    map: "Kartta"
 }

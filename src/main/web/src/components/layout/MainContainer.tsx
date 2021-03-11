@@ -6,7 +6,7 @@ import "./MainContainer.css";
 
 const MainContainer: React.FC = () => {
     return (
-        <div style={{marginLeft: "240px"}} className="main-container">
+        <div className="main-container">
             <div style={{ padding: 15}} className="main-container-content">
                 <div style={{ height: "100%", paddingLeft: "2em", paddingRight: "2em" }}>
                     <Switch>
