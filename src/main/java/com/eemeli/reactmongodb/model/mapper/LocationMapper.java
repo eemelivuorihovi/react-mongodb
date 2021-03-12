@@ -1,7 +1,7 @@
-package com.eemeli.mongodbtest.model.mapper;
+package com.eemeli.reactmongodb.model.mapper;
 
-import com.eemeli.mongodbtest.domain.Location;
-import com.eemeli.mongodbtest.model.LocationDTO;
+import com.eemeli.reactmongodb.domain.Location;
+import com.eemeli.reactmongodb.model.LocationDTO;
 import org.mapstruct.Mapper;
 
 @Mapper(componentModel = "spring")

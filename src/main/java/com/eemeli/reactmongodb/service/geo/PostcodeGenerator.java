@@ -1,4 +1,4 @@
-package com.eemeli.mongodbtest.service.geo;
+package com.eemeli.reactmongodb.service.geo;
 
 import feign.Feign;
 import feign.Logger;

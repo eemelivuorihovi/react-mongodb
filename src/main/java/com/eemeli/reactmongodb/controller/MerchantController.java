@@ -1,10 +1,9 @@
-package com.eemeli.mongodbtest.controller;
+package com.eemeli.reactmongodb.controller;
 
-import com.eemeli.mongodbtest.domain.Merchant;
-import com.eemeli.mongodbtest.http.ApiResponse;
-import com.eemeli.mongodbtest.model.MerchantDTO;
-import com.eemeli.mongodbtest.service.MerchantService;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.eemeli.reactmongodb.domain.Merchant;
+import com.eemeli.reactmongodb.http.ApiResponse;
+import com.eemeli.reactmongodb.model.MerchantDTO;
+import com.eemeli.reactmongodb.service.MerchantService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 

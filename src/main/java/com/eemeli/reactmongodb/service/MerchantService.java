@@ -1,13 +1,13 @@
-package com.eemeli.mongodbtest.service;
+package com.eemeli.reactmongodb.service;
 
-import com.eemeli.mongodbtest.domain.Location;
-import com.eemeli.mongodbtest.domain.Merchant;
-import com.eemeli.mongodbtest.http.geo.PostcodeResponse;
-import com.eemeli.mongodbtest.model.LocationDTO;
-import com.eemeli.mongodbtest.model.MerchantDTO;
-import com.eemeli.mongodbtest.model.mapper.MerchantMapper;
-import com.eemeli.mongodbtest.repository.MerchantRepository;
-import com.eemeli.mongodbtest.service.geo.PostcodeService;
+import com.eemeli.reactmongodb.domain.Location;
+import com.eemeli.reactmongodb.domain.Merchant;
+import com.eemeli.reactmongodb.http.geo.PostcodeResponse;
+import com.eemeli.reactmongodb.model.LocationDTO;
+import com.eemeli.reactmongodb.model.MerchantDTO;
+import com.eemeli.reactmongodb.model.mapper.MerchantMapper;
+import com.eemeli.reactmongodb.repository.MerchantRepository;
+import com.eemeli.reactmongodb.service.geo.PostcodeService;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

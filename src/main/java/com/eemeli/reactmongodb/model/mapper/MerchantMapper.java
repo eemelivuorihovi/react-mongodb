@@ -1,7 +1,7 @@
-package com.eemeli.mongodbtest.model.mapper;
+package com.eemeli.reactmongodb.model.mapper;
 
-import com.eemeli.mongodbtest.domain.Merchant;
-import com.eemeli.mongodbtest.model.MerchantDTO;
+import com.eemeli.reactmongodb.domain.Merchant;
+import com.eemeli.reactmongodb.model.MerchantDTO;
 import org.apache.commons.lang3.StringUtils;
 import org.mapstruct.Mapper;
 

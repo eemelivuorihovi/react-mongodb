@@ -1,6 +1,6 @@
-package com.eemeli.mongodbtest.repository;
+package com.eemeli.reactmongodb.repository;
 
-import com.eemeli.mongodbtest.domain.Merchant;
+import com.eemeli.reactmongodb.domain.Merchant;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.stereotype.Repository;
 

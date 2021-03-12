@@ -1,4 +1,4 @@
-package com.eemeli.mongodbtest.model;
+package com.eemeli.reactmongodb.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;

@@ -1,6 +1,6 @@
-package com.eemeli.mongodbtest.service.geo;
+package com.eemeli.reactmongodb.service.geo;
 
-import com.eemeli.mongodbtest.http.geo.PostcodeResponse;
+import com.eemeli.reactmongodb.http.geo.PostcodeResponse;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
 

@@ -1,4 +1,4 @@
-package com.eemeli.mongodbtest.domain;
+package com.eemeli.reactmongodb.domain;
 
 import lombok.*;
 import org.springframework.data.annotation.Id;

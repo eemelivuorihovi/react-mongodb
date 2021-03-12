@@ -1,4 +1,4 @@
-package com.eemeli.mongodbtest;
+package com.eemeli.reactmongodb;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

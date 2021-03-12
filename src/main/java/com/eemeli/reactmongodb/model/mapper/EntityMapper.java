@@ -1,4 +1,4 @@
-package com.eemeli.mongodbtest.model.mapper;
+package com.eemeli.reactmongodb.model.mapper;
 
 import java.util.List;
 

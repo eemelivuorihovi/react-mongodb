@@ -1,7 +1,7 @@
-package com.eemeli.mongodbtest.config;
+package com.eemeli.reactmongodb.config;
 
-import com.eemeli.mongodbtest.service.geo.PostcodeGenerator;
-import com.eemeli.mongodbtest.service.geo.PostcodesClient;
+import com.eemeli.reactmongodb.service.geo.PostcodeGenerator;
+import com.eemeli.reactmongodb.service.geo.PostcodesClient;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 

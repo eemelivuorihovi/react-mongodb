@@ -1,6 +1,6 @@
-package com.eemeli.mongodbtest.service.geo;
+package com.eemeli.reactmongodb.service.geo;
 
-import com.eemeli.mongodbtest.http.geo.PostcodeResponse;
+import com.eemeli.reactmongodb.http.geo.PostcodeResponse;
 import com.google.gson.FieldNamingPolicy;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;

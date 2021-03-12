@@ -1,4 +1,4 @@
-package com.eemeli.mongodbtest.http;
+package com.eemeli.reactmongodb.http;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.*;
