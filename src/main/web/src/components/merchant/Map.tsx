@@ -20,6 +20,10 @@ export default function Map(props: any) {
         };
 
         window.addEventListener("keydown", listener);
+
+        return () => {
+            window.removeEventListener("keydown", listener);
+        }
     }, []);
 
     const merchants = props.merchants;
